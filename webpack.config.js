@@ -5,12 +5,17 @@ const webpack = require('webpack');
 
 const config = {
   entry: {
-  	app: './src/index.js',
-  	// print: './src/print.js'
+  	app: './src/index.js'
+  },
+  output: {
+    filename: '[name].bundle.js',
+	  path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   devtool: 'inline-source-map',
 	devServer: {
 	  contentBase: './dist',
+	  historyApiFallback: true,
 	  hot: true
 	},
   plugins: [
@@ -20,10 +25,6 @@ const config = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],  
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
 	module: {
 	  rules: [
 	    {
