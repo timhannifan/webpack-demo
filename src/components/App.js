@@ -3,8 +3,12 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Switch
+  Switch,
+  browserHistory
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import ListExampleContainer from '../containers/ListExampleContainer';
 
 const Home = () => (
   <div>
@@ -58,25 +62,33 @@ const Topics = ({ match }) => (
   </div>
 )
 
-const App = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-        <li><Link to="/not/found/url">404</Link></li>
-      </ul>
+const App = ({ params }) => (
+   
+    <Router history={browserHistory}>
+      <div>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/topics">Topics</Link></li>
+          <li><Link to="/react-redux">react-redux</Link></li>
+          <li><Link to="/not/found/url">404</Link></li>
+        </ul>
 
-      <hr/>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/topics" component={Topics}/>
-        <Route component={NoMatch}/>
-      </Switch>
-    </div>
-  </Router>
+        <hr/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/topics" component={Topics}/>
+          <Route path="/react-redux" component={ListExampleContainer}/>
+          <Route component={NoMatch}/>
+        </Switch>
+      </div>
+    </Router>
+
 )
+
+// App.PropTypes = {
+//   store: PropTypes.object.isRequired
+// }
 
 export default App;

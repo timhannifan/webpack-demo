@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import Root from './components/Root';
+import appReducer from './reducers';
 
 let element = component();
+const store = createStore(appReducer);
 
 function component() {
   var comp = document.createElement('div');
@@ -13,13 +16,8 @@ function component() {
 }
 
 document.body.appendChild(element);
-ReactDOM.render(<App/>, document.getElementById('root'));
 
-// if (module.hot) {
-//   module.hot.accept('./App.js', function() {
-//     document.body.removeChild(element);
-//     element = component(); // Re-render the "component" to update the click handler
-//     document.body.appendChild(element);
-//     ReactDOM.render(<App/>, document.getElementById('root'));
-//   });
-// }
+render(
+	<Root store={store}/>, 
+	document.getElementById('root')
+)
