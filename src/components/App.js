@@ -62,33 +62,39 @@ const Topics = ({ match }) => (
   </div>
 )
 
-const App = ({ params }) => (
-   
-    <Router history={browserHistory}>
-      <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/topics">Topics</Link></li>
-          <li><Link to="/react-redux">react-redux</Link></li>
-          <li><Link to="/not/found/url">404</Link></li>
-        </ul>
+class App extends Component {
+  constructor(props) {
+    super(props)
+    // this.handleChange = this.handleChange.bind(this)
+    // this.handleRefreshClick = this.handleRefreshClick.bind(this)
+  }
+  componentDidMount() {
 
-        <hr/>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/about" component={About}/>
-          <Route path="/topics" component={Topics}/>
-          <Route path="/react-redux" component={ListExampleContainer}/>
-          <Route component={NoMatch}/>
-        </Switch>
-      </div>
-    </Router>
+  }
+  render () {
+    console.log(this)
+    return (
+      <Router history={browserHistory}>
+        <div>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/topics">Topics</Link></li>
+            <li><Link to="/react-redux">react-redux</Link></li>
+            <li><Link to="/not/found/url">404</Link></li>
+          </ul>
 
-)
-
-// App.PropTypes = {
-//   store: PropTypes.object.isRequired
-// }
-
+          <hr/>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/topics" component={Topics}/>
+            <Route path="/react-redux" component={ListExampleContainer}/>
+            <Route component={NoMatch}/>
+          </Switch>
+        </div>
+      </Router>
+    )
+  }
+}
 export default App;
